@@ -1,0 +1,15 @@
+{
+  "name": "UZ APPS",
+  "short_name": "UZ APPS",
+  "description": "Ilovalar, websaytlar, Telegram botlar va Chrome extensions katalogi.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#10b65a",
+  "lang": "uz",
+  "categories": ["utilities", "productivity", "education"],
+  "icons": [
+    {"src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}
