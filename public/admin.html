@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#101826">
+  <title>UZ APPS — Admin panel</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="admin-shell">
+  <aside class="admin-side">
+    <a class="brand" href="/"><img src="/logo.svg" alt=""><b>UZ APPS</b></a>
+    <nav class="admin-nav">
+      <button class="active" data-view="dashboard">📊 Dashboard</button>
+      <button data-view="items">📦 Mahsulotlar</button>
+      <button id="newItemBtn">＋ Yangi qo‘shish</button>
+      <button id="openStoreBtn">↗ Store</button>
+      <button id="logoutBtn">⎋ Chiqish</button>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-head"><div><h1>UZ APPS Admin</h1><p style="color:var(--muted);margin:5px 0 0">Ilovalar, saytlar, botlar va extensions boshqaruvi</p></div><button class="primary-btn" id="newItemTopBtn">＋ Yangi mahsulot</button></div>
+
+    <section id="dashboardView">
+      <div class="stat-grid">
+        <div class="stat"><span>Mahsulotlar</span><b id="statItems">—</b></div>
+        <div class="stat"><span>Foydalanuvchilar</span><b id="statUsers">—</b></div>
+        <div class="stat"><span>Yuklab olishlar</span><b id="statDownloads">—</b></div>
+        <div class="stat"><span>Ko‘rishlar</span><b id="statViews">—</b></div>
+      </div>
+      <div class="admin-card">
+        <div class="section-head"><div><h2>So‘nggi mahsulotlar</h2><p id="storageStatus">Storage tekshirilmoqda…</p></div></div>
+        <div id="recentList" class="loading">Yuklanmoqda…</div>
+      </div>
+    </section>
+
+    <section id="itemsView" class="hidden">
+      <div class="admin-card" style="margin-top:0">
+        <div class="section-head"><div><h2>Barcha mahsulotlar</h2><p>CRUD, status va statistikalar</p></div><input id="adminSearch" class="ghost-btn" placeholder="Qidirish…"></div>
+        <div id="itemsTableWrap" class="loading">Yuklanmoqda…</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal hidden" id="itemModal" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-head"><div><h2 id="modalTitle">Yangi mahsulot</h2><p style="color:var(--muted);margin:5px 0 0">UZ APPS katalogiga qo‘shish</p></div><button class="close-btn" id="closeModalBtn">×</button></div>
+    <form id="itemForm">
+      <input type="hidden" id="itemId">
+      <div class="form-grid">
+        <div class="field"><label>Nomi *</label><input id="fName" required maxlength="100" placeholder="Masalan: HALLAYM EDU"></div>
+        <div class="field"><label>Slug</label><input id="fSlug" maxlength="90" placeholder="hallaym-edu"></div>
+        <div class="field"><label>Turi *</label><select id="fType"><option value="android">Android app</option><option value="website">Websayt</option><option value="telegram">Telegram bot</option><option value="extension">Chrome extension</option><option value="windows">Windows</option><option value="other">Boshqa</option></select></div>
+        <div class="field"><label>Kategoriya</label><input id="fCategory" value="Boshqa" placeholder="Ta’lim, Transport, Utility…"></div>
+        <div class="field full"><label>Qisqa ta’rif</label><input id="fTagline" maxlength="180" placeholder="1 jumlada mahsulot haqida"></div>
+        <div class="field full"><label>Batafsil tavsif</label><textarea id="fDescription" placeholder="Funksiyalar, afzalliklar va foydalanish haqida…"></textarea></div>
+        <div class="field"><label>Dasturchi</label><input id="fDeveloper" value="HALLAYM"></div>
+        <div class="field"><label>Versiya</label><input id="fVersion" value="1.0.0"></div>
+        <div class="field"><label>Hajmi</label><input id="fSize" placeholder="24 MB"></div>
+        <div class="field"><label>Yosh reytingi</label><input id="fAge" value="3+"></div>
+        <div class="field full"><label>Talablar</label><input id="fRequirements" placeholder="Android 8+, Chrome 120+…"></div>
+        <div class="field full"><label>Taglar</label><input id="fTags" placeholder="education, pwa, uzbekistan"></div>
+        <div class="field full"><label>Permissions</label><input id="fPermissions" placeholder="Camera, Notifications…"></div>
+        <div class="field full"><label>Yangiliklar / changelog</label><textarea id="fChangelog" placeholder="v1.0: Birinchi reliz…"></textarea></div>
+
+        <div class="field full"><label>Icon URL</label><div class="upload-row"><input id="fIconUrl" placeholder="https://…"><input id="iconFile" type="file" accept="image/*"><button type="button" class="ghost-btn uploadBtn" data-file="iconFile" data-target="fIconUrl">Yuklash</button></div></div>
+        <div class="field full"><label>Cover / banner URL</label><div class="upload-row"><input id="fCoverUrl" placeholder="https://…"><input id="coverFile" type="file" accept="image/*"><button type="button" class="ghost-btn uploadBtn" data-file="coverFile" data-target="fCoverUrl">Yuklash</button></div></div>
+        <div class="field full"><label>Skrinshotlar URL (har qatorga bittadan)</label><textarea id="fScreenshots" placeholder="https://.../screen1.webp&#10;https://.../screen2.webp"></textarea><div class="upload-row"><input id="shotFile" type="file" accept="image/*"><button type="button" class="ghost-btn" id="uploadShotBtn">＋ Screenshot yuklash</button></div></div>
+
+        <div class="field full"><label>APK / ZIP / CRX / EXE fayl</label><div class="upload-row"><input id="packageFile" type="file" accept=".apk,.aab,.zip,.crx,.exe,.msi"><button type="button" class="primary-btn" id="uploadPackageBtn">Faylni R2 ga yuklash</button></div><div class="progress hidden" id="uploadProgress"><i></i></div><small style="color:var(--muted)">Yuklangach URL va R2 key avtomatik yoziladi.</small></div>
+        <div class="field full"><label>Download/package URL</label><input id="fPackageUrl" placeholder="https://…"></div>
+        <input type="hidden" id="fPackageKey">
+        <div class="field full"><label>Tashqi link (sayt/bot uchun)</label><input id="fExternalUrl" placeholder="https://t.me/... yoki https://site.uz"></div>
+
+        <div class="field"><label>SEO title</label><input id="fSeoTitle" maxlength="70"></div>
+        <div class="field"><label>SEO description</label><input id="fSeoDescription" maxlength="180"></div>
+        <div class="field full"><label style="display:flex;gap:18px;flex-wrap:wrap"><span><input id="fVerified" type="checkbox" checked> Verified</span><span><input id="fFeatured" type="checkbox"> Featured</span><span><input id="fPublished" type="checkbox" checked> Published</span></label></div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px"><button type="button" class="ghost-btn" id="cancelBtn">Bekor qilish</button><button class="primary-btn" type="submit" id="saveBtn">Saqlash</button></div>
+    </form>
+  </div>
+</div>
+<div class="toast hidden" id="toast"></div>
+<script src="/admin.js" defer></script>
+</body>
+</html>
