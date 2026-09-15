@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "UZ APPS — apps, websites, Telegram bots and Chrome extensions catalog",
-  "main": "server.js",
+  "main": "launcher.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js"
+    "start": "node launcher.js",
+    "dev": "node --watch launcher.js"
   },
   "engines": {
     "node": ">=20"
