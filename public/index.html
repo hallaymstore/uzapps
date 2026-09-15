@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>UZ APPS — Ilovalar, saytlar, Telegram botlar va Chrome extensions</title>
-  <meta name="description" content="UZ APPS — Android ilovalar, websaytlar, Telegram botlar va Chrome extensions uchun zamonaviy katalog. Akkauntsiz yuklab oling yoki oching.">
-  <meta name="keywords" content="UZ APPS, uzbek apps, android ilovalar, telegram botlar, chrome extensions, uzbekistan apps, apk yuklab olish">
-  <meta name="theme-color" content="#0b78ff">
+  <meta name="description" content="UZ APPS — Android ilovalar, websaytlar, Telegram botlar va Chrome extensions katalogi. Akkauntsiz yuklab oling yoki oching.">
+  <meta name="keywords" content="UZ APPS, uzbek apps, android ilovalar, telegram botlar, chrome extensions, apk yuklab olish">
+  <meta name="theme-color" content="#090d16">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -15,58 +15,96 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="UZ APPS">
   <meta property="og:title" content="UZ APPS — O‘zbekiston ilovalari bir joyda">
-  <meta property="og:description" content="Android ilovalar, websaytlar, Telegram botlar va Chrome extensions katalogi.">
+  <meta property="og:description" content="Android, web, Telegram va Chrome mahsulotlari uchun zamonaviy katalog.">
   <meta property="og:image" content="/logo.svg">
   <meta property="og:locale" content="uz_UZ">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/styles.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"UZ APPS","description":"Android ilovalar, websaytlar, Telegram botlar va Chrome extensions katalogi","potentialAction":{"@type":"SearchAction","target":"/?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 </head>
-<body>
-<header class="topbar">
-  <a class="brand" href="/" aria-label="UZ APPS bosh sahifa"><img src="/logo.svg" alt="UZ APPS logo"><b>UZ APPS</b></a>
-  <form class="top-search" id="searchForm"><input id="searchInput" type="search" autocomplete="off" placeholder="Ilova, sayt yoki bot qidiring…" aria-label="Qidiruv"></form>
+<body class="dark store-page">
+<header class="topbar compact-topbar">
+  <a class="brand" href="/" aria-label="UZ APPS bosh sahifa">
+    <img src="/logo.svg" alt="UZ APPS logo">
+    <span><b>UZ APPS</b><small>Digital Store</small></span>
+  </a>
   <div class="top-actions">
-    <button class="icon-btn" id="themeBtn" aria-label="Tungi rejim">◐</button>
-    <a class="ghost-btn" id="accountBtn" href="/login">Kirish</a>
+    <button class="icon-btn" id="themeBtn" aria-label="Rang rejimi">◐</button>
+    <a class="avatar-btn" id="accountBtn" href="/login" aria-label="Profil">K</a>
   </div>
 </header>
-<main class="layout">
-  <section class="hero">
-    <div class="hero-copy">
-      <span class="eyebrow">🇺🇿 O‘zbekiston raqamli mahsulotlari</span>
-      <h1>Hammasi bir joyda.</h1>
-      <p>Android ilovalaringiz, websaytlaringiz, Telegram botlaringiz va Chrome extensions’laringiz uchun bitta chiroyli katalog. Ko‘rish va yuklab olish uchun ro‘yxatdan o‘tish shart emas.</p>
-      <div class="hero-actions"><a class="primary-btn" href="#catalog">Katalogni ko‘rish</a><a class="ghost-btn" href="#websites">Websaytlar</a></div>
+
+<main class="mobile-shell">
+  <section class="welcome-card" id="home">
+    <div>
+      <span class="mini-label">🇺🇿 UZ APPS</span>
+      <h1>Kerakli mahsulotni tez toping.</h1>
+      <p>Ilovalar, saytlar, botlar va extensions — barchasi bitta sodda katalogda.</p>
     </div>
-    <div class="hero-art" aria-hidden="true"><div class="phone"><div class="phone-grid"><div class="mini-app">A</div><div class="mini-app">W</div><div class="mini-app">T</div><div class="mini-app">+</div></div></div></div>
+    <img src="/logo.svg" alt="" aria-hidden="true">
   </section>
 
-  <section class="section" id="featuredSection">
-    <div class="section-head"><div><h2>Tavsiya etilgan</h2><p>Eng muhim va yangi mahsulotlar</p></div></div>
+  <form class="store-search" id="searchForm" role="search">
+    <span class="search-icon">⌕</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="Ilova, sayt yoki bot qidiring" aria-label="Qidiruv">
+    <button type="submit" aria-label="Qidirish">Topish</button>
+  </form>
+
+  <nav class="quick-types" id="typeTabs" aria-label="Mahsulot turlari">
+    <button class="quick-type active" data-type="all"><span>✦</span>Hammasi</button>
+    <button class="quick-type" data-type="android"><span>▣</span>Ilovalar</button>
+    <button class="quick-type" data-type="website"><span>◫</span>Saytlar</button>
+    <button class="quick-type" data-type="telegram"><span>➤</span>Botlar</button>
+    <button class="quick-type" data-type="extension"><span>◇</span>Extensions</button>
+    <button class="quick-type" data-type="windows"><span>⊞</span>Windows</button>
+  </nav>
+
+  <section class="section compact-section" id="featuredSection">
+    <div class="section-head compact-head">
+      <div><span class="section-kicker">Tanlangan</span><h2>Tavsiya etilgan</h2></div>
+      <button class="text-btn" data-scroll="#catalog">Barchasi</button>
+    </div>
     <div class="featured-strip" id="featuredList"><div class="loading">Yuklanmoqda…</div></div>
   </section>
 
-  <section class="section" id="catalog">
-    <div class="section-head"><div><h2>UZ APPS katalogi</h2><p>Kerakli mahsulotni tur bo‘yicha toping</p></div><select id="sortSelect" class="ghost-btn" aria-label="Saralash"><option value="popular">Ommabop</option><option value="newest">Eng yangi</option><option value="updated">Yangilangan</option><option value="rating">Reyting</option></select></div>
-    <div class="type-tabs" id="typeTabs">
-      <button class="type-tab active" data-type="all">Hammasi</button>
-      <button class="type-tab" data-type="android">Android</button>
-      <button class="type-tab" data-type="website">Websaytlar</button>
-      <button class="type-tab" data-type="telegram">Telegram botlar</button>
-      <button class="type-tab" data-type="extension">Chrome extensions</button>
-      <button class="type-tab" data-type="windows">Windows</button>
+  <section class="section compact-section" id="catalog">
+    <div class="section-head compact-head">
+      <div><span class="section-kicker">Katalog</span><h2>Ilovalar va servislar</h2></div>
+      <select id="sortSelect" class="mini-select" aria-label="Saralash">
+        <option value="popular">Ommabop</option>
+        <option value="newest">Yangi</option>
+        <option value="updated">Yangilangan</option>
+        <option value="rating">Reyting</option>
+      </select>
     </div>
-    <div class="chips" id="categoryChips"><button class="chip active" data-category="all">Barcha kategoriyalar</button></div>
-    <div class="app-grid" id="appGrid"><div class="loading">Katalog yuklanmoqda…</div></div>
+    <div class="chips compact-chips" id="categoryChips"><button class="chip active" data-category="all">Barchasi</button></div>
+    <div class="app-grid compact-grid" id="appGrid"><div class="loading">Katalog yuklanmoqda…</div></div>
   </section>
 
-  <section class="section" id="websites">
-    <div class="section-head"><div><h2>Websaytlar</h2><p>Skrinshot ko‘rinishida tezkor tanishing</p></div><button class="ghost-btn" id="allWebsitesBtn">Hammasini ko‘rish</button></div>
-    <div class="website-grid" id="websiteGrid"><div class="loading">Yuklanmoqda…</div></div>
+  <section class="section compact-section" id="websites">
+    <div class="section-head compact-head">
+      <div><span class="section-kicker">Web</span><h2>Websaytlar</h2></div>
+      <button class="text-btn" id="allWebsitesBtn">Hammasi</button>
+    </div>
+    <div class="website-grid compact-websites" id="websiteGrid"><div class="loading">Yuklanmoqda…</div></div>
+  </section>
+
+  <section class="store-info">
+    <div><b>Akkauntsiz yuklab olish</b><span>Ro‘yxatdan o‘tish majburiy emas</span></div>
+    <div><b>Xavfsiz katalog</b><span>Har bir mahsulot admin orqali boshqariladi</span></div>
   </section>
 </main>
-<footer class="footer"><b>UZ APPS</b> · Android, Web, Telegram va Chrome katalogi · <a href="/privacy.html">Maxfiylik</a> · <a href="/terms.html">Shartlar</a> · <span id="year"></span></footer>
+
+<footer class="footer compact-footer"><b>UZ APPS</b><span> · </span><a href="/privacy.html">Maxfiylik</a><span> · </span><a href="/terms.html">Shartlar</a><span> · </span><span id="year"></span></footer>
+
+<nav class="bottom-nav" aria-label="Asosiy navigatsiya">
+  <button class="bottom-item active" data-nav="home" data-scroll="#home"><span>⌂</span><small>Bosh</small></button>
+  <button class="bottom-item" data-nav="apps" data-type-nav="android"><span>▣</span><small>Ilovalar</small></button>
+  <button class="bottom-item" data-nav="web" data-scroll="#websites"><span>◫</span><small>Saytlar</small></button>
+  <button class="bottom-item" data-nav="search" id="bottomSearch"><span>⌕</span><small>Qidiruv</small></button>
+  <a class="bottom-item" data-nav="profile" id="bottomProfile" href="/login"><span>○</span><small>Profil</small></a>
+</nav>
+
 <div class="toast hidden" id="toast"></div>
 <script src="/app.js" defer></script>
 </body>
