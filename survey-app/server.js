@@ -18,7 +18,7 @@ app.post('/submit',(req,res)=>{
  for(let i=1;i<=20;i++){if(!a['q'+i])return res.status(400).json({ok:false})}
  const rows=read();rows.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),createdAt:new Date().toISOString(),answers:a});write(rows);res.json({ok:true});
 });
-app.get('/admin/export.csv',(req,res)=>{
+app.get('/admin/export.csv',(req,res)=>{ if(req.query.key!==process.env.ADMIN_KEY)return res.status(403).send('Forbidden');
  const rows=read();const head=['createdAt',...questions.map((_,i)=>'S'+(i+1))];
  const csv=[head,...rows.map(r=>[r.createdAt,...questions.map((_,i)=>r.answers['q'+(i+1)]||'')])].map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
  res.type('text/csv').set('Content-Disposition','attachment; filename="sorovnoma-javoblari.csv"').send('\ufeff'+csv)
